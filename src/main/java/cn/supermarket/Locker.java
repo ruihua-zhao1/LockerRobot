@@ -28,6 +28,11 @@ public class Locker {
         return this.capacity - bagMap.size();
 
     }
+
+    public double getAvailableRatio() {
+        return 1-(bagMap.size()/this.capacity)*1.0;
+
+    }
     public Bag getBag(Ticket ticket) {
         if (bagMap.isEmpty()) {
             throw new InvalidTicketException();

@@ -42,4 +42,17 @@ public class FrontDeskTest {
         Bag bagFromLocker = superLockerRobot.getBag(ticket);
         Assert.assertEquals(bagA, bagFromLocker);
     }
+
+
+    @Test
+    public void given_XiaoYing_manages_full_Super_when_stores_S_bag_then_store_failed_and_got_no_space_error() {
+        Bag bagA = new Bag(BagType.S);
+        Locker lockerA = new Locker(10);
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(lockerA));
+
+        Ticket ticket = superLockerRobot.store(bagA);
+
+        Bag bagFromLocker = superLockerRobot.getBag(ticket);
+        Assert.assertEquals(bagA, bagFromLocker);
+    }
 }

@@ -11,19 +11,19 @@ public class SuperLockerRobot extends LockerRobot {
     @Override
     public Locker getTargetLocker() {
 
-        Locker maxCapacityLocaker = null;
+        Locker maxCapacityRatioLocker = null;
         for (Locker locker : managedLockers) {
-            if (maxCapacityLocaker == null) {
-                maxCapacityLocaker = locker;
+            if (maxCapacityRatioLocker == null) {
+                maxCapacityRatioLocker = locker;
                 continue;
             }
-            if (maxCapacityLocaker.getAvailableSpaceNumber() < locker.getAvailableSpaceNumber()) {
-                maxCapacityLocaker = locker;
+            if (maxCapacityRatioLocker.getAvailableRatio() < locker.getAvailableRatio()) {
+                maxCapacityRatioLocker = locker;
             }
         }
 
-        if (maxCapacityLocaker != null && maxCapacityLocaker.getAvailableSpaceNumber() > 0) {
-            return maxCapacityLocaker;
+        if (maxCapacityRatioLocker != null && maxCapacityRatioLocker.getAvailableSpaceNumber() > 0) {
+            return maxCapacityRatioLocker;
         }
         return null;
     }

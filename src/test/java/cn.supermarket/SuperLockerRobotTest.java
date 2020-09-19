@@ -52,9 +52,10 @@ public class SuperLockerRobotTest {
         assertEquals(bagA, lockerA.getBag(ticketA));
     }
 
+
     @Test
-    public void given_superLockerRobot_managed_lockerA_lockerB_and_lockerB_has_more_available_space_when_store_bagA_then_bagA_is_stored_in_lockerB() {
-        Locker lockerA = new PrivateLocker(1, BagType.L);
+    public void given_superLockerRobot_managed_lockerA_lockerB_and_both_have_same_available_space_when_store_bagA_then_bagA_is_stored_by_locker_order() {
+        Locker lockerA = new PrivateLocker(2, BagType.L);
         Locker lockerB = new PrivateLocker(2, BagType.L);
         Bag bagA = new Bag(BagType.L);
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(lockerA, lockerB));
@@ -62,13 +63,16 @@ public class SuperLockerRobotTest {
         Ticket ticketA = superLockerRobot.store(bagA);
 
         assertNotNull(ticketA);
-        assertEquals(bagA, lockerB.getBag(ticketA));
+        assertEquals(bagA, lockerA.getBag(ticketA));
     }
 
     @Test
-    public void given_superLockerRobot_managed_lockerA_lockerB_and_both_have_same_available_space_when_store_bagA_then_bagA_is_stored_by_locker_order() {
+    public void given_superLockerRobot_managed_lockerA_lockerB_and_lockerB_has_more_available_capacity_ratio_when_store_bagA_then_bagA_is_stored_by_available_capacity_ratio_order() {
         Locker lockerA = new PrivateLocker(2, BagType.L);
-        Locker lockerB = new PrivateLocker(2, BagType.L);
+        lockerA.store(new Bag(BagType.L));
+        Locker lockerB = new PrivateLocker(5, BagType.L);
+        lockerB.store(new Bag(BagType.L));
+        lockerB.store(new Bag(BagType.L));
         Bag bagA = new Bag(BagType.L);
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(lockerA, lockerB));
 
