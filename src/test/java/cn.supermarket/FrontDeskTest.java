@@ -3,9 +3,7 @@ package cn.supermarket;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class FrontDeskTest {
     @Test
@@ -25,11 +23,23 @@ public class FrontDeskTest {
         Locker lockerA = new Locker(10);
         Locker lockerB = new Locker(10);
         PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(Arrays.asList(lockerB));
-        SuperLockerRobot SuperLockerRobot = new SuperLockerRobot();
+        SuperLockerRobotTest SuperLockerRobot = new SuperLockerRobotTest();
 
         Ticket ticket = primaryLockerRobot.store(bagA);
 
         Bag bagFromLocker = primaryLockerRobot.getBag(ticket);
+        Assert.assertEquals(bagA, bagFromLocker);
+    }
+
+    @Test
+    public void given_XiaoYing_manages_LockerA_PrimaryLockerRobot_with_available_LockerP_and_SuperLockerRobot_with_available_LockerS_when_stores_L_bag_then_could_store_success() {
+        Bag bagA = new Bag(BagType.L);
+        Locker lockerB = new Locker(10);
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(lockerB));
+
+        Ticket ticket = superLockerRobot.store(bagA);
+
+        Bag bagFromLocker = superLockerRobot.getBag(ticket);
         Assert.assertEquals(bagA, bagFromLocker);
     }
 }
