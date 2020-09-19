@@ -4,7 +4,7 @@
 
    * Given XiaoYing manages LockerA, PrimaryLockerRobot with lockerP and SuperLockerRobot with LockerS
    * And all the lockers have available spaces
-   * When normal cusomter stores a s bag
+   * When normal customer stores a s bag
    * Then store successfully
    * And get valid ticket
    * And bagA is stored in LockerA
