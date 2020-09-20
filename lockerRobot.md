@@ -29,13 +29,6 @@
    * Then store failed
    * And get <No available space> error
 
-   * Given XiaoYing manages full LockerA and available lockerB, PrimaryLockerRobot with lockerP and SuperLockerRobot with LockerS
-   * PrimaryLockerRobot and SuperLockerRobot have available spaces
-   * When normal customter stores a S bag
-   * Then store successfully
-   * And get valid ticket
-   * And bag is stored in LockerB
-
   * Given XiaoYing manages LockerA, PrimaryLockerRobot with available lockerP1 and available LockerP2 and SuperLockerRobot with available LockerS
   * When normal cusomter stores a M bag
   * Then store successfully

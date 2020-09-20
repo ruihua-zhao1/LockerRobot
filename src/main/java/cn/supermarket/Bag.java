@@ -6,4 +6,8 @@ public class Bag {
     public Bag(BagType type) {
         this.type = type;
     }
+
+    public BagType getType() {
+        return type;
+    }
 }

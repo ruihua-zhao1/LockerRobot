@@ -4,4 +4,5 @@ public enum BagType {
     S,
     M,
     L,
+    Other,
 }

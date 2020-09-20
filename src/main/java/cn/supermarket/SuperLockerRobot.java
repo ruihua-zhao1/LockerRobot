@@ -1,5 +1,7 @@
 package cn.supermarket;
 
+import cn.supermarket.exception.InvalidBagTypeException;
+
 import java.util.List;
 
 public class SuperLockerRobot extends LockerRobot {
@@ -26,5 +28,12 @@ public class SuperLockerRobot extends LockerRobot {
             return maxCapacityRatioLocker;
         }
         return null;
+    }
+
+    @Override
+    void verifyBag(Bag bag) {
+        if(bag.getType() != BagType.L ) {
+            throw new InvalidBagTypeException();
+        }
     }
 }

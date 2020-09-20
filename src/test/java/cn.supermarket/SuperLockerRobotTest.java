@@ -2,6 +2,7 @@ package cn.supermarket;
 
 import cn.supermarket.exception.InvalidTicketException;
 import cn.supermarket.exception.NoAvailableSpaceException;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -25,6 +26,7 @@ public class SuperLockerRobotTest {
 
         Ticket ticketA = superLockerRobot.store(bagA);
         assertNotNull(ticketA);
+        Assert.assertEquals(BagType.L, ticketA.getType());
     }
 
     @Test
@@ -49,6 +51,7 @@ public class SuperLockerRobotTest {
         Ticket ticketA = superLockerRobot.store(bagA);
 
         assertNotNull(ticketA);
+        Assert.assertEquals(BagType.L, ticketA.getType());
         assertEquals(bagA, lockerA.getBag(ticketA));
     }
 
@@ -63,6 +66,7 @@ public class SuperLockerRobotTest {
         Ticket ticketA = superLockerRobot.store(bagA);
 
         assertNotNull(ticketA);
+        Assert.assertEquals(BagType.L, ticketA.getType());
         assertEquals(bagA, lockerA.getBag(ticketA));
     }
 
@@ -79,6 +83,7 @@ public class SuperLockerRobotTest {
         Ticket ticketA = superLockerRobot.store(bagA);
 
         assertNotNull(ticketA);
+        Assert.assertEquals(BagType.L, ticketA.getType());
         assertEquals(bagA, lockerA.getBag(ticketA));
     }
 
@@ -111,7 +116,7 @@ public class SuperLockerRobotTest {
     public void given_SuperLockerRobot_managed_LockerA_and_it_stored_bagA_when_get_bag_with_fake_ticket_then_get_error_message() throws InvalidTicketException {
         Locker lockerA = new PrivateLocker(12, BagType.L);
         Bag bagA = new Bag(BagType.L);
-        Ticket invalidTicket = new Ticket();
+        Ticket invalidTicket = new Ticket(BagType.L);
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(lockerA));
 
         superLockerRobot.store(bagA);
@@ -121,7 +126,7 @@ public class SuperLockerRobotTest {
     }
 
     @Test
-    public void given_superLockerRobot_managed_lockerA_lockerB_and_it_stored_bagA_when_get_bag_then_get_bagA() {
+    public void given_superLockerRobot_managed_lockerA_lockerB_and_it_stored_bagA_when_get_bag_then_get_bagA_success() {
         Locker lockerA = new PrivateLocker(1, BagType.L);
         Locker lockerB = new PrivateLocker(2, BagType.L);
         Bag bagB = new Bag(BagType.L);
@@ -135,10 +140,10 @@ public class SuperLockerRobotTest {
 
     @Test
     public void given_SuperLockerRobot_managed_LockerA_lockerB_when_get_bag_with_fake_ticket_then_get_error_message() throws InvalidTicketException {
-        Locker lockerA = new Locker(12);
-        Locker lockerB = new Locker(12);
+        Locker lockerA = new Locker(12, BagType.L);
+        Locker lockerB = new Locker(12, BagType.L);
         Bag bagA = new Bag(BagType.L);
-        Ticket invalidTicket = new Ticket();
+        Ticket invalidTicket = new Ticket(BagType.L);
         SuperLockerRobot superLockerRobot = new SuperLockerRobot(Arrays.asList(lockerA, lockerB));
 
         superLockerRobot.store(bagA);

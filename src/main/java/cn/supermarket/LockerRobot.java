@@ -13,6 +13,7 @@ public abstract class LockerRobot {
     }
 
     public Ticket store(Bag bag) {
+        verifyBag(bag);
         Locker targetLocker = getTargetLocker();
         if (getTargetLocker() == null) {
             throw new NoAvailableSpaceException();
@@ -53,4 +54,6 @@ public abstract class LockerRobot {
     }
 
     public abstract Locker getTargetLocker();
+
+    abstract void verifyBag(Bag bag);
 }
